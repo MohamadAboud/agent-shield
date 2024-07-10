@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  api:
+    build: 
+      context: .
+    image: agent-shield:latest
+    container_name: api-container
+    ports:
+      - "7651:7651"
+    env_file:
+      - .env
+    command: ["agent-shield", "run", "api"]
+
+  ui:
+    image: agent-shield:latest
+    container_name: ui-container
+    ports:
+      - "7652:7652"
+    env_file:
+      - .env
+    command: ["agent-shield", "run", "ui"]
+    depends_on:
+      - api

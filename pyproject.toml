@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "agent-shield"
+version = "0.1.0"
+description = "A cutting-edge AI solution designed to detect and protect against hate speech and personal information exposure, ensuring a safer and more respectful communication environment."
+authors = ["mohamadaboud <mohamadaboud663@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain = "^0.2.7"
+Flask = "^3.0.3"
+python-dotenv = "^1.0.1"
+langchain-experimental = "^0.0.62"
+google-generativeai = "^0.7.2"
+langchain-google-genai = "^1.0.7"
+langchain-community = "^0.2.7"
+click = "^8.1.7"
+chainlit = "^1.1.306"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+agent-shield = "agent_shield.__init__:cli" # This is the entry point for the CLI
