@@ -4,6 +4,7 @@ from typing import Optional
 from dotenv import load_dotenv
 from agent_shield.guardian_ai.guardian_ai import GuardianAI
 from agent_shield.guardian_ai.llm_base import LLMBase
+from agent_shield.guardian_ai.guardian_category import GuardianCategory
 load_dotenv(override=True)  # Load environment variables from .env file
 
 
@@ -61,6 +62,13 @@ async def on_chat_start():
     cl.user_session.set("chain", chain)
 
 
+@cl.action_callback("category_info")
+async def on_action(action):
+    await cl.Message(content=json.loads(action.value), author="Aboud").send()
+    # Optionally remove the action button from the chatbot user interface
+    await action.remove()
+
+
 @cl.on_message
 async def on_message(message: cl.Message):
     chain = cl.user_session.get("chain")  # type: GuardianAI
@@ -70,7 +78,19 @@ async def on_message(message: cl.Message):
             question=message.content,
             callbacks=[cl.LangchainCallbackHandler()],
         )
-        await cl.Message(content=res, author="Aboud").send()
+
+        actions = [
+            cl.Action(
+                name="category_info",
+                label="Category Info",
+                value=GuardianCategory.from_type(
+                    res['results']['category']
+                ).to_json(),
+                description="Get more information about the category",
+            )
+        ]
+
+        await cl.Message(content=res, author="Aboud", actions=actions).send()
     except Exception as e:
         elements = [
             cl.Text(name="Error", content=str(e), display="inline")

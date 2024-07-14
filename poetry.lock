@@ -1036,32 +1036,6 @@ SQLAlchemy = ">=1.4,<3"
 tenacity = ">=8.1.0,<8.4.0 || >8.4.0,<9.0.0"
 
 [[package]]
-name = "langchain-community"
-version = "0.2.7"
-description = "Community contributed LangChain integrations."
-optional = false
-python-versions = "<4.0,>=3.8.1"
-files = [
-    {file = "langchain_community-0.2.7-py3-none-any.whl", hash = "sha256:c236e74249ab68a318c94c95327cbe75a76489b61f7bf93f14117d9233ce70b1"},
-    {file = "langchain_community-0.2.7.tar.gz", hash = "sha256:f52659dbb8a8f0c011cc7d634247686d11d768843cc3e5fe9e6f52321cde82c0"},
-]
-
-[package.dependencies]
-aiohttp = ">=3.8.3,<4.0.0"
-dataclasses-json = ">=0.5.7,<0.7"
-langchain = ">=0.2.7,<0.3.0"
-langchain-core = ">=0.2.12,<0.3.0"
-langsmith = ">=0.1.0,<0.2.0"
-numpy = [
-    {version = ">=1,<2", markers = "python_version < \"3.12\""},
-    {version = ">=1.26.0,<2.0.0", markers = "python_version >= \"3.12\""},
-]
-PyYAML = ">=5.3"
-requests = ">=2,<3"
-SQLAlchemy = ">=1.4,<3"
-tenacity = ">=8.1.0,<8.4.0 || >8.4.0,<9.0.0"
-
-[[package]]
 name = "langchain-core"
 version = "0.2.12"
 description = "Building applications with LLMs through composability"
@@ -1082,21 +1056,6 @@ pydantic = [
 ]
 PyYAML = ">=5.3"
 tenacity = ">=8.1.0,<8.4.0 || >8.4.0,<9.0.0"
-
-[[package]]
-name = "langchain-experimental"
-version = "0.0.62"
-description = "Building applications with LLMs through composability"
-optional = false
-python-versions = "<4.0,>=3.8.1"
-files = [
-    {file = "langchain_experimental-0.0.62-py3-none-any.whl", hash = "sha256:9240f9e3490e819976f20a37863970036e7baacb7104b9eb6833d19ab6d518c9"},
-    {file = "langchain_experimental-0.0.62.tar.gz", hash = "sha256:9737fbc8429d24457ea4d368e3c9ba9ed1cace0564fb5f1a96a3027a588bd0ac"},
-]
-
-[package.dependencies]
-langchain-community = ">=0.2.6,<0.3.0"
-langchain-core = ">=0.2.10,<0.3.0"
 
 [[package]]
 name = "langchain-google-genai"
@@ -2594,4 +2553,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "e4db5bd7bba021af771b6e9f08efdc2c68ca5e201cbececd9e10e2a2568224d7"
+content-hash = "2b01e918ef297fde6d1caeb505329be88ac20988f9b578d935d9bd7791a262ce"

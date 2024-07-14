@@ -7,14 +7,12 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+click = "^8.1.7"
+python-dotenv = "^1.0.1"
 langchain = "^0.2.7"
 Flask = "^3.0.3"
-python-dotenv = "^1.0.1"
-langchain-experimental = "^0.0.62"
 google-generativeai = "^0.7.2"
 langchain-google-genai = "^1.0.7"
-langchain-community = "^0.2.7"
-click = "^8.1.7"
 chainlit = "^1.1.306"
 
 [build-system]
@@ -22,4 +20,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-agent-shield = "agent_shield.__init__:cli" # This is the entry point for the CLI
+agent-shield = "agent_shield.__main__:cli" # This is the entry point for the CLI

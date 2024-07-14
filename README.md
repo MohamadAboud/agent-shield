@@ -27,7 +27,7 @@ Agent Shield is highly configurable. To set up your environment:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/agent-shield
+   git clone https://github.com/yourusername/agent-shield agent_shield
    ```
 
 2. Navigate to the project directory:

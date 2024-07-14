@@ -13,9 +13,7 @@ def ask(question: str) -> None:
     guardian = GuardianAI()
     # print("Running the GuardianAI...")
     res = guardian.invoke(question)
-    click.echo(res)
-
-# Create a command to get the categories by name: str or id: int
+    click.echo(click.style(res, fg="green"))
 
 
 @click.command()
@@ -30,8 +28,6 @@ def categories(name: str, id: int) -> None:
     categorie = GuardianCategory.from_type(name or id)
     click.echo("\n"+str(categorie)+"\n")
 
-# Create a group of commands [run api, run ui]
-
 
 @click.group()
 def run() -> None:
@@ -40,9 +36,9 @@ def run() -> None:
     """
     pass
 
+
+
 # Add run api
-
-
 @run.command()
 @click.option("--host", type=str, default="0.0.0.0", help="The host of the API.")
 @click.option("--port", type=int, default=7651, help="The port of the API.")
@@ -55,14 +51,16 @@ def api(host: str, port: int, debug: bool) -> None:
     from .api.api import run as run_api_server  
     run_api_server(host, port, debug)
     
+
+
 # Add run ui
-
-
 @run.command()
-def ui() -> None:
+@click.option("--host", type=str, default="0.0.0.0", help="The host of the API.")
+@click.option("--port", type=int, default=7652, help="The port of the API.")
+def ui(host: str, port: int) -> None:
     """
     Run the GuardianAI UI.
     """
     click.echo("Running the GuardianAI UI...")
     from .ui.ui import run as run_ui_server
-    run_ui_server()
+    run_ui_server(host, port)

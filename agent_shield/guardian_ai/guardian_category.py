@@ -1,4 +1,5 @@
 from enum import Enum
+import json
 
 
 class GuardianCategory(Enum):
@@ -103,3 +104,6 @@ class GuardianCategory(Enum):
             "value": self.value,
             "description": self.description
         }
+    
+    def to_json(self) -> str:
+        return json.dumps(self.to_map())

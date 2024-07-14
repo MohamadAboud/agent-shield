@@ -1,37 +1,31 @@
-# Use Python 11.0 as the base image
+# Use an official Python runtime as a parent image
 FROM python:3.11-slim
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# Set the working directory in the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Install system dependencies
+# Install build dependencies
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    curl \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Poetry
-RUN pip install poetry
+    && pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir poetry \
+    && poetry config virtualenvs.create false 
 
 # Copy only the dependency files to optimize caching
-COPY poetry.lock pyproject.toml /app/
+COPY pyproject.toml poetry.lock /app/
 
 # Install project dependencies
 RUN poetry install --no-root --no-dev
 
 # Copy the rest of the application code
-COPY . /app/
+COPY . /app
 
+# Install the current directory in editable mode
 RUN pip install --editable .
 
-# Expose the ports for both the API and UI
-EXPOSE 7651
-EXPOSE 7652
+# Expose ports for API and UIe
+EXPOSE 7651 7652
 
-# Run the application
-CMD ["agent-shield", "run", "api"]
+# Run the API service
+CMD ["agent-shield", "run", "api"] 
+# Run the UI service
+# CMD ["agent-shield", "run", "ui"] 

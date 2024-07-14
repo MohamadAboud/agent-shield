@@ -2,18 +2,18 @@ version: '3'
 
 services:
   api:
-    build: 
+    build:
       context: .
-    image: agent-shield:latest
     container_name: api-container
     ports:
       - "7651:7651"
     env_file:
       - .env
     command: ["agent-shield", "run", "api"]
-
+  
   ui:
-    image: agent-shield:latest
+    build:
+      context: .
     container_name: ui-container
     ports:
       - "7652:7652"

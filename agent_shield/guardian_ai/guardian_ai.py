@@ -81,10 +81,7 @@ class GuardianAI(LLMBase):
                 'callbacks': callbacks
             })
             # Add the llm results to the response
-            response['results'] = {'llm': {
-                'input': question,
-                'output': llm,
-            }, 'category': None}
+            response['results'] = {'category': None}
 
             # handle the output
             output = handel_output(llm)
@@ -93,7 +90,7 @@ class GuardianAI(LLMBase):
             # Get the harm category
             category = GuardianCategory.from_type(classification_category)
             # Set the harm category into the response
-            response['results']['category'] = category.to_map()
+            response['results']['category'] = category.name
             return response
         except Exception as e:
             logger.error(f"Error invoking the AI Assistant: {e}")
